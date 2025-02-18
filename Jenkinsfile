@@ -5,7 +5,7 @@ pipeline {
         stage('Preparar Workspace') {
             steps {
                 script {
-                    deleteDir() // Limpia archivos previos en el workspace
+                    deleteDir() // Limpia el workspace antes de empezar
                 }
             }
         }
@@ -13,15 +13,6 @@ pipeline {
         stage('Clonar Repositorio') {
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Verificar Instalaciones') {
-            steps {
-                script {
-                    sh 'docker --version'
-                    sh 'kubectl version --client'
-                }
             }
         }
 
@@ -51,3 +42,4 @@ pipeline {
         }
     }
 }
+
