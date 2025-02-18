@@ -2,17 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Preparar Workspace') {
-            steps {
-                script {
-                    deleteDir() // Limpia el workspace antes de empezar
-                }
-            }
-        }
-
         stage('Clonar Repositorio') {
             steps {
-                checkout scm
+               git branch: 'main', url: 'https://github.com/juank4rojas/jenkins-pipeline.git'
             }
         }
 
