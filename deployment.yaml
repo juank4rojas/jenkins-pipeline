@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: us-central1-docker.pkg.dev/primer-proyecto-450603/mi-repo-nginx/nginx-hola-mundo:latest
+          ports:
+            - containerPort: 80
