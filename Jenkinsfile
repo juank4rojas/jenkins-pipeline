@@ -2,9 +2,26 @@ pipeline {
     agent any
 
     stages {
+        stage('Preparar Workspace') {
+            steps {
+                script {
+                    deleteDir() // Limpia archivos previos en el workspace
+                }
+            }
+        }
+
         stage('Clonar Repositorio') {
             steps {
-               git branch: 'main', url: 'https://github.com/juank4rojas/jenkins-pipeline.git'
+                checkout scm
+            }
+        }
+
+        stage('Verificar Instalaciones') {
+            steps {
+                script {
+                    sh 'docker --version'
+                    sh 'kubectl version --client'
+                }
             }
         }
 
